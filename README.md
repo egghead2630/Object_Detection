@@ -37,6 +37,7 @@ matplotlib:
 Training
 -------------------------------------------------------------------------
 To train the models, run this command:
+python train.py --img 320 --batch 16 --epochs 120 --data digits.yaml --device 0 --weights best.pt
 
 python3 train.py <path_to_data> 
 
@@ -81,6 +82,7 @@ train.py's link: https://github.com/egghead2630/VRDL_HW1/blob/main/train.py
 Evaluation
 -------------------------------------------------------------------------
 To evaluate my model, run:
+python val.py --img 320 --save-json --data digits.yaml --task test --device 0 --weights ./upload/beat_baseline/best.pt
 
 python3 inference.py <path_to_data> <path_to_model>
     
