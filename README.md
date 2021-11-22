@@ -120,12 +120,13 @@ Colab:
 	
 	Same, change its name to answer.json, compress to .zip and submit it to codalab to check the mAP. 
 	
-	For code and data link:
-		link of inference.ipynb: https://colab.research.google.com/drive/1_ziiQF5g-lu8BFIUoYCgF-i9x2s8C_EB?usp=sharing
+For code and data link:
+
+Lnk of inference.ipynb: https://colab.research.google.com/drive/1_ziiQF5g-lu8BFIUoYCgF-i9x2s8C_EB?usp=sharing
 		
-		config(digits.yaml): https://drive.google.com/drive/u/0/folders/1ZJoVoq383pYioPzD-2-CH_OS6z4jK7So
+Config(digits.yaml): https://drive.google.com/drive/u/0/folders/1ZJoVoq383pYioPzD-2-CH_OS6z4jK7So
 		
-		model(best.pt): https://drive.google.com/drive/u/0/folders/1n-TN6DMNZlATZjg5U38oLqBmY0Eiz2Cg
+Model(best.pt): https://drive.google.com/drive/u/0/folders/1n-TN6DMNZlATZjg5U38oLqBmY0Eiz2Cg
 
 
 Note: It is kind of weird that I have two different prediction result when running locally and on colab.
