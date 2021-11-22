@@ -1,9 +1,8 @@
 # VRDL_HW2
 -------------------------------------------------------------------------
-This repository is the official implementation of My VRDL_HW1: Image classification
+This repository is the official implementation of My VRDL_HW2: Object detection
 
-Model link:
-https://drive.google.com/drive/folders/1n-TN6DMNZlATZjg5U38oLqBmY0Eiz2Cg?usp=sharing
+
 
 Requirements
 -------------------------------------------------------------------------
@@ -15,129 +14,110 @@ pytorch:
 	
 	pip3 install torch==1.10.0+cu113 torchvision==0.11.1+cu113 torchaudio===0.10.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
 
-sklearn:
+yolov5:
 	
-	pip3 install scikit-learn
+	git clone https://github.com/ultralytics/yolov5
+	cd yolov5
+	pip install -r requirements.txt
 
-PIL:
-	
-	python3 -m pip install --upgrade Pillow
+pycocotools:
 
-matplotlib:
-	
-	pip3 install matplotlib
-
-
-
-
-
+	pip install git+https://github.com/philferriere/cocoapi.git#subdirectory=PythonAPI
 
 
 
 Training
 -------------------------------------------------------------------------
-To train the models, run this command:
-python train.py --img 320 --batch 16 --epochs 120 --data digits.yaml --device 0 --weights best.pt
+To train the models, we first need to put every file into the right directory to ensure the whole process can run normally, and I will specify the steps to handle it below.
 
-python3 train.py <path_to_data> 
+	1. Create a directory "pj" first, and move to the "pj" directory 
+	
+	2. Since this implementation is based on yolov5, run this: git clone https://github.com/ultralytics/yolov5
+	
+	3. Now we have a yolov5 directory in "pj", next, we create a new directory "data" in "pj".
+	
+	4. We copy our "train" and "test" directory into "data", they contain train and test images respectively
+	
+	5. Also put "data_process.py" and "split.py" into "data" directory
+	
+	6. Run "data_process.py", this would generate labels for the train images and store them into "./labels" directory
 
-    Then the the program would perform training and save the ten best models locally, from best_model0 to best_model9.
-    
-    I train 10 models for bagging in the following evaluation part, 10 is a constant coded in train.py and inference.py.
-    
-    In the <path_to_data> you shall indicate the path to the directory that contains following files and directories:
-            1. train(folder): contain all of the images for training
-            2. test(folder): contain all of the images for testing
-            3. classes.txt: contain all the labels
-            4. testing_img_order.txt: contain the order of testing image coming in
-            5. training_labels.txt: contain all the training image number aloing with their labels
-    
-    About train process, I specify the transform as:
+	7. Run "split.py", this would split the train data randomly into train and validate part in proportion of 9:1, and the two parts would be properly and automatically seperated into different directories, that you don't need to worry about.
+	
+	8. Now we have the "data" directory properly set up, next, simply copy "digits.yaml" into the "yolov5" directory
+	
+	9. All data are now in the right place, and it should look like this, note that if there is no (F) postfix, that is a directory
+	
+	
+	pj ----- yolov5 ---- digits.yaml(F) 
+	   |		|
+	   |		|
+	   |		---- other files in yolov5
+	   |
+	   ----- data ---- train ---- images
+	   	      |          |
+		      |		 |
+		      |		 ---- labels
+		      |
+		      ---- val ---- images
+		      |	       |
+		      |	       |
+		      |	       ---- labels
+		      |
+		      ---- test
+		      |
+		      |
+		      |
+		      |
+		      ---- data_process.py(F)
+		      |
+		      |
+		      |
+		      |
+		      ---- split.py(F)
 
-	transform = torchvision.transforms.Compose([
-		torchvision.transforms.Resize((300,300)),
-		torchvision.transforms.RandomCrop((270,270)),	
-		torchvision.transforms.ToTensor(),
-		torchvision.transforms.Normalize(mean = [0.485,0.456,0.406], std = [0.229,0.224,0.225]),
-		torchvision.transforms.RandomHorizontalFlip(),
-		torchvision.transforms.RandomRotation(30)
-	])
-  with batch_size = 10, for more detailed explaination about the whole process, please refer to the code comment and report.
- 
- Warning: Data path shall not contain / or \ in the tail.
+Now we are prepared to train the model.
 
- 	Correct: /data
- 	Error: /data/
- 
- If you mistype, then error would occur, this format is the same for all the path in this implementation.
-  
- 
-train.py's link: https://github.com/egghead2630/VRDL_HW1/blob/main/train.py
+To train the model, run this command in "yolov5" directory:
 
+python train.py --img 320 --batch 16 --epochs 120 --data digits.yaml --device 0 --weights yolov5s.pt
 
+You don't need to worry the yolov5s.pt not existed problem, since it would be automatically downloaded when running the command.
 
+This command would perform the training using the pretrained yolov5s model with following hyperparameters:
+	
+	batch size:16
+	resize img: 320*320
+	max epochs: 120
 
-
+You can check the result in the "run" directory in "yolov5" directory.
 
 Evaluation
 -------------------------------------------------------------------------
-To evaluate my model, run:
-python val.py --img 320 --save-json --data digits.yaml --task test --device 0 --weights ./upload/beat_baseline/best.pt
 
-python3 inference.py <path_to_data> <path_to_model>
-    
-    <path_to_data> is the same as train part
-    
-    In the <path_to_model> you shall indicate the path to the directory that contains following files:
-            1. All of the 10 models from best_model0 to best_model9
-    
-To get the 10 models that I used, go to this google cloud to download: https://drive.google.com/drive/folders/1pyId96KiD4XHN25f7EQhh9PYi792z6Pi?usp=sharing
+To evaluate the model, first download my model from here:
+https://drive.google.com/drive/folders/1n-TN6DMNZlATZjg5U38oLqBmY0Eiz2Cg?usp=sharing
 
-	Note that there is a bug in google drive, that if you choose to download all the files together, you will download a zip file
-
-	After unzip, you will get a folder models/, but inside the models/ would be ten models with name best_model0~9.zip instead of best_model0~9
-	
-	I think this is a google drive bug about filename extension, you have two ways to solve the problem
-	
-	1. Delete all the .zip filename extension, and you can run the inference.py with those best_models normally
-	
-	2. Manually download them one by one, this way you would get 10 best_models instead of best_models.zip
-	
+Put the best.pt into the "yolov5" directory, then run:
+python val.py --img 320 --save-json --data digits.yaml --task test --device 0 --weights best.pt
 	
 
-After running, an answer.txt would be generated and stored locally.
+After running, a file "best_prediction.json" would be generated and stored in the "run" directory.
     
-Compress the answer.txt to .zip file and upload to codalab is enough to evaluate my model's prediction
+Change the filename to "answer.json" and compress it to .zip file and upload to codalab is enough to evaluate my model's prediction
     
-For convinience, I write a checktxt.py to check if two answer.txt is the same
-    
-Run checktxt.py: python3 checktxt.py <path_to_first_answer> <path_to_second_answer>
-    
-    <path_to_first_answer> should be filled with the path to first answer.txt   ex: /answer1/answer.txt
-    
-    <path_to_second_answer> should be filled with the path to second answer.txt   ex: /answer2/answer.txt
-    
-    If Output is True, means the two answer.txt are exactly the same, in False case, they're not.
-
-inference.py's link: https://github.com/egghead2630/VRDL_HW1/blob/main/inference.py
-
-checktxt.py's link: https://github.com/egghead2630/VRDL_HW1/blob/main/checktxt.py
-
 
 
 
 Pre-trained Models
 -------------------------------------------------------------------------
-You can download and use pretrained models by simply running this command in python3:
+You can download and use pretrained models by simply running training command above:
     
-    model = torchvision.models.resnet50(pretrained = True)
+python train.py --img 320 --batch 16 --epochs 120 --data digits.yaml --device 0 --weights yolov5s.pt
     
-    This will load a pretrained resnet50 to your model, and the resnet50 will be automatically downloaded if have not been downloaded yet.
+    This will download yolov5s.pt if not downloaded yet.
     
     
-
-
-
 Results
 -------------------------------------------------------------------------
 Our model achieves the following performance on :
