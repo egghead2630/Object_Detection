@@ -2,6 +2,8 @@
 -------------------------------------------------------------------------
 This repository is the official implementation of My VRDL_HW1: Image classification
 
+Model link:
+https://drive.google.com/drive/folders/1n-TN6DMNZlATZjg5U38oLqBmY0Eiz2Cg?usp=sharing
 
 Requirements
 -------------------------------------------------------------------------
