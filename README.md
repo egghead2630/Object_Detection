@@ -95,6 +95,7 @@ You can check the result in the "run" directory in "yolov5" directory.
 Evaluation
 -------------------------------------------------------------------------
 Two ways to evaluate my model: Locally run it or using Colab
+
 Locally Run:
 	To evaluate the model, first download my model from here:
 	https://drive.google.com/drive/folders/1n-TN6DMNZlATZjg5U38oLqBmY0Eiz2Cg?usp=sharing
@@ -109,15 +110,36 @@ Locally Run:
 	Change the filename to "answer.json" and compress it to .zip file and upload to codalab is enough to evaluate my model's prediction
 	
 Colab:
-	simply run inference.ipynb step by step, you will have answer.json same as in codalab 
+	You should do the following first to ensure the program can run properly
+		
+		1. Sign in your google account
+		2. Create two directories in your google drive and name them as "VRDL_HW2_config" and "VRDL_HW2_model"
+		3. Put best.pt into "VRDL_HW2_model", and put digits.yaml into "VRDL_HW2_config"
+		
+	Then simply run inference.ipynb step by step, you will have answer.json same as in codalab 
 	
-	link of inference.ipynb: https://colab.research.google.com/drive/1_ziiQF5g-lu8BFIUoYCgF-i9x2s8C_EB?usp=sharing
-	
-	Since I am not really familiar with colab, I provide model and config link below once you have no best.pt and digits.yaml, you can download them from here
-	
-	config(digits.yaml): https://drive.google.com/drive/u/0/folders/1ZJoVoq383pYioPzD-2-CH_OS6z4jK7So
-	model(best.pt): https://drive.google.com/drive/u/0/folders/1n-TN6DMNZlATZjg5U38oLqBmY0Eiz2Cg
+	For code and data link:
+		link of inference.ipynb: https://colab.research.google.com/drive/1_ziiQF5g-lu8BFIUoYCgF-i9x2s8C_EB?usp=sharing
+		
+		config(digits.yaml): https://drive.google.com/drive/u/0/folders/1ZJoVoq383pYioPzD-2-CH_OS6z4jK7So
+		
+		model(best.pt): https://drive.google.com/drive/u/0/folders/1n-TN6DMNZlATZjg5U38oLqBmY0Eiz2Cg
 
+
+Note: It is kind of weird that I have two different prediction result when running locally and on colab.
+
+When running on COLAB, I have mAP: 0.416198 
+
+When running on local, I have mAP: 0.41623
+
+There's only a minor diff about 0.00003 between them.
+
+I've checked the two files generated, and they're almost the same, both in size and content.
+
+I now have no idea why this goes on, but can only think it as a python version issue, and unfortunately, now I haven't fixed the issue.
+
+
+	
 Pre-trained Models
 -------------------------------------------------------------------------
 You can download and use pretrained models by simply running training command above:
