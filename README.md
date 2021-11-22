@@ -158,11 +158,11 @@ Our model achieves the following performance on :
 
 mAP: HW2 challenge on codalab	
 
-[!img1](https://github.com/egghead2630/VRDL_HW2/blob/main/result.png)
+![img1](https://github.com/egghead2630/VRDL_HW2/blob/main/result.png)
 
 benchmark: on Colab
 
-[!img2](https://github.com/egghead2630/VRDL_HW2/blob/main/infer_result.png)
+![img2](https://github.com/egghead2630/VRDL_HW2/blob/main/infer_result.png)
 
 
 
