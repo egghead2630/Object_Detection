@@ -80,7 +80,7 @@ Now we are prepared to train the model.
 
 To train the model, run this command in "yolov5" directory:
 
-python train.py --img 320 --batch 16 --epochs 120 --data digits.yaml --device 0 --weights yolov5s.pt
+	python train.py --img 320 --batch 16 --epochs 120 --data digits.yaml --device 0 --weights yolov5s.pt
 
 You don't need to worry the yolov5s.pt not existed problem, since it would be automatically downloaded when running the command.
 
@@ -99,7 +99,8 @@ To evaluate the model, first download my model from here:
 https://drive.google.com/drive/folders/1n-TN6DMNZlATZjg5U38oLqBmY0Eiz2Cg?usp=sharing
 
 Put the best.pt into the "yolov5" directory, then run:
-python val.py --img 320 --save-json --data digits.yaml --task test --device 0 --weights best.pt
+
+	python val.py --img 320 --save-json --data digits.yaml --task test --device 0 --weights best.pt
 	
 
 After running, a file "best_prediction.json" would be generated and stored in the "run" directory.
@@ -113,23 +114,23 @@ Pre-trained Models
 -------------------------------------------------------------------------
 You can download and use pretrained models by simply running training command above:
     
-python train.py --img 320 --batch 16 --epochs 120 --data digits.yaml --device 0 --weights yolov5s.pt
-    
-    This will download yolov5s.pt if not downloaded yet.
+	python train.py --img 320 --batch 16 --epochs 120 --data digits.yaml --device 0 --weights yolov5s.pt
+
+This will download yolov5s.pt if not downloaded yet.
     
     
 Results
 -------------------------------------------------------------------------
 Our model achieves the following performance on :
 
-HW1 challenge on codalab	
+mAP: HW1 challenge on codalab	
 
-![img1](https://github.com/egghead2630/VRDL_HW1/blob/main/results/result.png)
+
+benchmark: on Colab
 
 
 
 leaderboard:
-https://competitions.codalab.org/competitions/35668?secret_key=09789b13-35ec-4928-ac0f-6c86631dda07#results
 
 
 Reproducing without retraining
