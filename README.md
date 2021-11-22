@@ -90,7 +90,7 @@ This command would perform the training using the pretrained yolov5s model with 
 	resize img: 320*320
 	max epochs: 120
 
-You can check the result in the "run" directory in "yolov5" directory.
+You can check the result in the "runs" directory in "yolov5" directory.
 
 Evaluation
 -------------------------------------------------------------------------
@@ -105,7 +105,7 @@ Locally Run:
 		python val.py --img 320 --save-json --data digits.yaml --task test --device 0 --weights best.pt
 	
 
-	After running, a file "best_prediction.json" would be generated and stored in the "run" directory.
+	After running, a file "best_prediction.json" would be generated and stored in the "runs" directory.
     
 	Change the filename to "answer.json" and compress it to .zip file and upload to codalab is enough to evaluate my model's prediction
 	
@@ -116,7 +116,9 @@ Colab:
 		2. Create two directories in your google drive and name them as "VRDL_HW2_config" and "VRDL_HW2_model"
 		3. Put best.pt into "VRDL_HW2_model", and put digits.yaml into "VRDL_HW2_config"
 		
-	Then simply run inference.ipynb step by step, you will have answer.json same as in codalab 
+	Then simply run inference.ipynb step by step, best_predictions.json will be generated and automatically downloaded to your computer.
+	
+	Same, change its name to answer.json, compress to .zip and submit it to codalab to check the mAP. 
 	
 	For code and data link:
 		link of inference.ipynb: https://colab.research.google.com/drive/1_ziiQF5g-lu8BFIUoYCgF-i9x2s8C_EB?usp=sharing
