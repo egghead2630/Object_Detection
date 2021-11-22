@@ -122,7 +122,7 @@ Colab:
 	
 For code and data link:
 
-Lnk of inference.ipynb: https://colab.research.google.com/drive/1_ziiQF5g-lu8BFIUoYCgF-i9x2s8C_EB?usp=sharing
+Link of inference.ipynb: https://colab.research.google.com/drive/1_ziiQF5g-lu8BFIUoYCgF-i9x2s8C_EB?usp=sharing
 		
 Config(digits.yaml): https://drive.google.com/drive/u/0/folders/1ZJoVoq383pYioPzD-2-CH_OS6z4jK7So
 		
