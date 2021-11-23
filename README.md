@@ -100,9 +100,8 @@ Locally Run:
 	
 	First You need to handle the file as the training part has done, then, 
 	
-	to evaluate the model, download my model from here:
-	https://drive.google.com/drive/folders/1n-TN6DMNZlATZjg5U38oLqBmY0Eiz2Cg?usp=sharing
-
+	to evaluate the model, download the model from link in the below.
+	
 	Put the best.pt into the "yolov5" directory, then run:
 
 		python val.py --img 320 --save-json --data digits.yaml --task test --device 0 --weights best.pt
@@ -113,6 +112,7 @@ Locally Run:
 	Change the filename to "answer.json" and compress it to .zip file and upload to codalab is enough to evaluate my model's prediction
 	
 Colab:
+	
 	You should do the following first to ensure the program can run properly
 		
 		1. Sign in your google account
@@ -123,9 +123,9 @@ Colab:
 	
 	Same, change its name to answer.json, compress to .zip and submit it to codalab to check the mAP. 
 	
-For code and data link:
+Links for code and data :
 
-Inference.ipynb: https://colab.research.google.com/drive/1_ziiQF5g-lu8BFIUoYCgF-i9x2s8C_EB?usp=sharing
+Colab(inference.ipynb): https://colab.research.google.com/drive/1_ziiQF5g-lu8BFIUoYCgF-i9x2s8C_EB?usp=sharing
 		
 Config(digits.yaml): https://drive.google.com/drive/u/0/folders/1ZJoVoq383pYioPzD-2-CH_OS6z4jK7So
 		
