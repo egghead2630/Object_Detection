@@ -97,7 +97,10 @@ Evaluation
 Two ways to evaluate my model: Locally run it or using Colab
 
 Locally Run:
-	To evaluate the model, first download my model from here:
+	
+	First You need to handle the file as the training part has done, then, 
+	
+	to evaluate the model, download my model from here:
 	https://drive.google.com/drive/folders/1n-TN6DMNZlATZjg5U38oLqBmY0Eiz2Cg?usp=sharing
 
 	Put the best.pt into the "yolov5" directory, then run:
